@@ -19,16 +19,6 @@ WORKDIR /deps
 
 RUN touch /root/.bashrc
 
-# Install NVM, Node, and pnpm 
-ARG NODE_VERSION=14
-ENV NVM_DIR /root/.nvm
-RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash \
-  && . ${NVM_DIR}/nvm.sh \
-  && nvm install ${NODE_VERSION} \
-  && npm i -g npm \
-  && npm i -g pnpm \
-  && echo 'alias npm=pnpm' >> /root/.bashrc
-
 # Install the AWS CLI
 RUN wget https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip \
   && unzip awscli-exe-linux-x86_64.zip \
@@ -56,5 +46,14 @@ RUN go get github.com/cweill/gotests/...
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.37.1
 RUN go get github.com/cosmtrek/air
 ENV PATH /root/go/bin:${PATH}
+
+# Install NVM, Node, and pnpm 
+ARG NODE_VERSION=15
+ENV NVM_DIR /root/.nvm
+RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash \
+  && . ${NVM_DIR}/nvm.sh \
+  && nvm install ${NODE_VERSION} \
+  && npm i -g npm \
+  && npm i -g pnpm
 
 WORKDIR /workspace
