@@ -1,5 +1,5 @@
 {
-  "forwardPorts": [3000],
+  "forwardPorts": [5000, 5005],
   "dockerComposeFile": "./docker-compose.yml",
   "service": "dev",
   "workspaceFolder": "/workspace",
@@ -13,6 +13,9 @@
         "source.organizeImports": true
       },
       "editor.defaultFormatter": "golang.go"
+    },
+    "[svelte]": {
+      "editor.defaultFormatter": "svelte.svelte-vscode"
     },
     "go.lintTool": "golangci-lint",
     "go.lintFlags": ["--fast", "--enable-all", "--new"],
