@@ -7,10 +7,12 @@ import { terser } from 'rollup-plugin-terser'
 import { copySync, removeSync } from 'fs-extra'
 import { spassr } from 'spassr'
 import getConfig from '@roxi/routify/lib/utils/config'
-import windicss from 'svelte-windicss-preprocess'
+import injectProcessEnv from 'rollup-plugin-inject-process-env'
+import { preprocess as windiPreprocess } from 'svelte-windicss-preprocess'
+
 const { distDir } = getConfig() // use Routify's distDir for SSOT
 const assetsDir = 'assets'
-const buildDir = `${distDir}/build`
+const buildDir = `dist/build`
 const isNollup = !!process.env.NOLLUP
 const production = !process.env.ROLLUP_WATCH
 
@@ -34,6 +36,7 @@ const serve = () => ({
     })
   },
 })
+
 const copyToDist = () => ({
   writeBundle() {
     copySync(assetsDir, distDir)
@@ -56,10 +59,12 @@ export default {
       // Extract component CSS — better performance
       css: css => css.write(`bundle.css`),
       hot: isNollup,
-      preprocess: windicss.preprocess({
-        config: 'tailwind.config.js',
-        compile: true,
-        prefix: 'css-',
+      preprocess: windiPreprocess({
+        config: './tailwind.config.js',
+        compile: production,
+        prefix: 'windi-',
+        globalPreflight: true,
+        globalUtility: true,
       }),
     }),
 
@@ -74,13 +79,9 @@ export default {
     !production && !isNollup && serve(),
     !production && !isNollup && livereload(distDir), // refresh entire window when code is updated
     !production && isNollup && Hmr({ inMemory: true, public: assetsDir }), // refresh only updated code
-    {
-      // provide node environment on the client
-      transform: code => ({
-        code: code.replace('process.env.NODE_ENV', `"${process.env.NODE_ENV}"`),
-        map: { mappings: '' },
-      }),
-    },
+    injectProcessEnv({
+      NODE_ENV: production ? 'production' : 'development',
+    }),
     production && copyToDist(),
   ],
   watch: {
