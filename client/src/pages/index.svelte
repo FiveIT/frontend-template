@@ -1,87 +1,67 @@
 <script>
-  import { metatags } from '@roxi/routify'
-  import { debounce } from 'lodash-es'
-
-  import Logo from '../components/Logo.svelte'
-
-  metatags.title = 'Eseuri'
-  metatags.description = 'De fapt curiozități despre pisici'
-
+  /**
+   * @type {Promise<string[]>[]}
+   */
+  let responses = []
   /**
    * @type {string[]}
    */
-  const facts = []
-
-  /**
-   * Fetches n cat facts if the provided length is lower than
-   * the provided threshold, else returns an empty array.
-   *
-   * @param {number} n The fact count
-   * @param {number} length The current fact count
-   * @param {number} threshold The fact count under which this function
-   * fetches the facts
-   * @returns {Promise<string[]>} The fetched facts
-   */
-  const fetchFacts = (n, length, threshold) => {
-    if (length <= threshold) {
-      return fetch(`https://cat-fact.herokuapp.com/facts/random?amount=${n}`)
-        .then(res => res.json())
-        .then(res => res.map(fact => fact.text))
-    }
-    return Promise.resolve([])
-  }
-
+  let response
   /**
    * @type {Promise<string>}
    */
   let fact
 
-  /**
-   * Fetches 10 facts if the fact count is under threshold.
-   *
-   * @param {number} threshold The fact count under which to fetch facts
-   * @returns {Promise<number>} The count of new facts
-   */
-  const prefetchFacts = threshold =>
-    fetchFacts(10, facts.length, threshold).then(nf => facts.push(...nf))
+  let fetchStatus = ''
 
-  /**
-   * Assings `fact` a new fact, fetching if necessary.
-   */
-  const getFact = () => {
-    fact = prefetchFacts(0).then(() => facts.pop())
+  const getFact = async () => {
+    const length = response?.length ?? 0
+    if (length < 5) {
+      if (responses.length < 2) {
+        fetchStatus = 'fetching'
+        const res = fetch('https://cat-fact.herokuapp.com/facts/random?amount=10')
+          .then(res => res.json())
+          .then(res => ((fetchStatus = ''), res.map(r => r.text)))
+          .catch(err => {
+            fetchStatus = 'error'
+            throw err
+          })
+        responses.push(res)
+      }
+      if (length === 0) {
+        response = await responses.shift()
+      }
+    }
+    return response.shift()
   }
 
-  getFact()
+  fact = getFact()
 </script>
 
-<main
-  class="flex flex-col items-center space-y-3 w-full h-screen p-32 bg-white"
->
-  <h1 class="text-xs"><Logo /></h1>
-  <p class="content text-gray">
-    Modifică fișierul și observă schimbările în timp real, fără reîmprospătare.
-  </p>
-  {#await fact}
-    <p class="content text-blue">Se obține o curiozitate despre pisici...</p>
-  {:then text}
-    <p class="content">{text}</p>
-  {:catch}
-    <p class="content text-red">Ceva rău s-a întâmplat!</p>
-  {/await}
+<main class="flex flex-col items-center p-32 w-full h-screen bg-white">
+  <div class="flex flex-col space-y-3 items-center">
+    <h1 class="font-serif tracking-tighter text-8xl subpixel-antialiasing font-bold select-none">
+      Eseuri<span class="text-orange transition" class:text-blue={fetchStatus === 'fetching'} class:text-red={fetchStatus === 'error'}
+        >.</span
+      >
+    </h1>
+    <p class="text text-gray">Modifică documentul și observă schimbările în timp real, fără reîmprospătare.</p>
+    {#await fact}
+      <p class="text text-blue">Se obtine o curiozitate despre pisici</p>
+    {:then text}
+      <p class="text">{text}</p>
+    {:catch}
+      <p class="text text-red">Ceva rău s-a întâmplat!</p>
+    {/await}
+  </div>
   <button
-    class="p-5 rounded-xl bg-white border content transition cursor-pointer outline-none hover:(bg-orange border-orange text-white)"
-    on:click={debounce(getFact, 2000, { leading: true })}
-    on:hover={() => prefetchFacts(5)}>Curiozitate nouă</button
+    class="text p-6 border rounded-xl mt-auto transition focus:outline-none hover:border-orange hover:bg-orange hover:text-white cursor-pointer bg-white"
+    on:click={() => (fact = getFact())}>Curiozitate nouă</button
   >
 </main>
 
 <style>
-  .content {
-    @apply font-sans text-xl tracking-tighter max-w-prose text-center subpixel-antialiased;
-  }
-
-  button {
-    margin-top: auto !important;
+  .text {
+    @apply font-sans tracking-tighter text-xl subpixel-antialiasing text-center max-w-prose;
   }
 </style>
