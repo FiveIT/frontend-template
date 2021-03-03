@@ -12,21 +12,45 @@
    */
   const facts = []
 
-  const fetchFacts = (length, threshold) => {
+  /**
+   * Fetches n cat facts if the provided length is lower than
+   * the provided threshold, else returns an empty array.
+   *
+   * @param {number} n The fact count
+   * @param {number} length The current fact count
+   * @param {number} threshold The fact count under which this function
+   * fetches the facts
+   * @returns {Promise<string[]>} The fetched facts
+   */
+  const fetchFacts = (n, length, threshold) => {
     if (length <= threshold) {
-      return fetch('https://cat-fact.herokuapp.com/facts/random?amount=10')
+      return fetch(`https://cat-fact.herokuapp.com/facts/random?amount=${n}`)
         .then(res => res.json())
         .then(res => res.map(fact => fact.text))
     }
     return Promise.resolve([])
   }
 
+  /**
+   * @type {Promise<string>}
+   */
   let fact
 
+  /**
+   * Fetches 10 facts if the fact count is under threshold.
+   *
+   * @param {number} threshold The fact count under which to fetch facts
+   * @returns {Promise<number>} The count of new facts
+   */
   const prefetchFacts = threshold =>
-    fetchFacts(facts.length, threshold).then(nf => facts.push(...nf))
+    fetchFacts(10, facts.length, threshold).then(nf => facts.push(...nf))
 
-  const getFact = () => (fact = prefetchFacts(0).then(() => facts.pop()))
+  /**
+   * Assings `fact` a new fact, fetching if necessary.
+   */
+  const getFact = () => {
+    fact = prefetchFacts(0).then(() => facts.pop())
+  }
 
   getFact()
 </script>
