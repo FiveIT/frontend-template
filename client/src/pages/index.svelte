@@ -19,7 +19,9 @@
     if (length < 5) {
       if (responses.length < 2) {
         fetchStatus = 'fetching'
-        const res = fetch('https://cat-fact.herokuapp.com/facts/random?amount=10')
+        const res = fetch(
+          'https://cat-fact.herokuapp.com/facts/random?amount=10'
+        )
           .then(res => res.json())
           .then(res => ((fetchStatus = ''), res.map(r => r.text)))
           .catch(err => {
@@ -40,12 +42,19 @@
 
 <main class="flex flex-col items-center p-32 w-full h-screen bg-white">
   <div class="flex flex-col space-y-3 items-center">
-    <h1 class="font-serif tracking-tighter text-8xl subpixel-antialiasing font-bold select-none">
-      Eseuri<span class="text-orange transition" class:text-blue={fetchStatus === 'fetching'} class:text-red={fetchStatus === 'error'}
-        >.</span
+    <h1
+      class="font-serif tracking-tighter text-8xl subpixel-antialiasing font-bold select-none"
+    >
+      Eseuri<span
+        class="text-orange transition"
+        class:text-blue={fetchStatus === 'fetching'}
+        class:text-red={fetchStatus === 'error'}>.</span
       >
     </h1>
-    <p class="text text-gray">Modifică documentul și observă schimbările în timp real, fără reîmprospătare.</p>
+    <p class="text text-gray">
+      Modifică documentul și observă schimbările în timp real, fără
+      reîmprospătare.
+    </p>
     {#await fact}
       <p class="text text-blue">Se obtine o curiozitate despre pisici</p>
     {:then text}
