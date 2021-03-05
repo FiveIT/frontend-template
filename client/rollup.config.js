@@ -3,6 +3,7 @@ import Hmr from 'rollup-plugin-hot'
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import livereload from 'rollup-plugin-livereload'
+import svg from 'rollup-plugin-svg'
 import { terser } from 'rollup-plugin-terser'
 import { copySync, removeSync } from 'fs-extra'
 import { spassr } from 'spassr'
@@ -55,9 +56,11 @@ export default {
   },
   plugins: [
     svelte({
-      dev: !production, // run-time checks
-      // Extract component CSS — better performance
-      css: css => css.write(`bundle.css`),
+      compilerOptions: {
+        css: true,
+        dev: !production,
+      },
+      emitCss: false,
       hot: isNollup,
       preprocess: windiPreprocess({
         config: './tailwind.config.js',
@@ -67,6 +70,7 @@ export default {
         globalUtility: true,
       }),
     }),
+    svg(),
 
     // resolve matching modules from current working directory
     resolve({
