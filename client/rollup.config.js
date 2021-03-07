@@ -57,7 +57,6 @@ export default {
   plugins: [
     svelte({
       compilerOptions: {
-        css: true,
         dev: !production,
       },
       emitCss: false,
