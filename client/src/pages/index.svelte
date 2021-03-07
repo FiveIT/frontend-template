@@ -1,4 +1,10 @@
 <script>
+  import { Carousel } from 'renderless-svelte'
+  import Queue from '../queue'
+  import * as routify from '@roxi/routify'
+
+  routify.metatags.title = 'Cat facts'
+
   /**
    * @type {Promise<string[]>[]}
    */
@@ -7,10 +13,6 @@
    * @type {string[]}
    */
   let response
-  /**
-   * @type {Promise<string>}
-   */
-  let fact
 
   let fetchStatus = ''
 
@@ -36,41 +38,105 @@
     }
     return response.shift()
   }
+  /**
+   * @type {Queue<Promise<string>>}
+   */
+  let history = new Queue(10)
 
-  fact = getFact()
+  const pushHistory = () => {
+    history.push(getFact())
+    history = history
+  }
+
+  pushHistory()
+
+  let controls
+  /**
+   * Creates a function that calls the leftHandler if the left
+   * key is pressed, or otherwise calls the rightHandler.
+   *
+   * @param {() => void} leftHandler
+   * @param {() => void} rightHandler
+   *
+   * @returns {(ev: KeyboardEvent) => void} The new event handler
+   */
+  const keydownHandler = (leftHandler, rightHandler) => ev => {
+    switch (ev.code) {
+      case 'KeyH':
+      case 'ArrowLeft':
+        leftHandler()
+        break
+      case 'KeyL':
+      case 'ArrowRight':
+        rightHandler()
+        break
+    }
+  }
 </script>
 
-<main class="flex flex-col items-center p-32 w-full h-screen bg-white">
-  <div class="flex flex-col space-y-3 items-center">
-    <h1
-      class="font-serif tracking-tighter text-8xl subpixel-antialiasing font-bold select-none"
-    >
-      Eseuri<span
-        class="text-orange transition"
-        class:text-blue={fetchStatus === 'fetching'}
-        class:text-red={fetchStatus === 'error'}>.</span
-      >
-    </h1>
-    <p class="text text-gray">
-      Modifică documentul și observă schimbările în timp real, fără
-      reîmprospătare.
-    </p>
-    {#await fact}
-      <p class="text text-blue">Se obtine o curiozitate despre pisici</p>
-    {:then text}
-      <p class="text">{text}</p>
-    {:catch}
-      <p class="text text-red">Ceva rău s-a întâmplat!</p>
-    {/await}
-  </div>
-  <button
-    class="text p-6 border rounded-xl mt-auto transition focus:outline-none hover:border-orange hover:bg-orange hover:text-white cursor-pointer bg-white"
-    on:click={() => (fact = getFact())}>Curiozitate nouă</button
+<main class="flex flex-col items-center p-10vh w-full min-h-screen bg-white">
+  <Carousel
+    items={history.array()}
+    let:payload
+    bind:controls
+    let:currentIndex
+    let:setIndex
   >
+    <div class="flex flex-col items-center space-y-3 w-full min-h-full">
+      <h1
+        class="font-serif tracking-tighter text-8xl subpixel-antialiasing font-bold select-none m-0"
+      >
+        Cat facts<span
+          class="text-orange transition"
+          class:text-blue={fetchStatus === 'fetching'}
+          class:text-red={fetchStatus === 'error'}>.</span
+        >
+      </h1>
+      {#await payload}
+        <p class="text text-blue">Retrieving a cat fact...</p>
+      {:then text}
+        <p class="text">{text}</p>
+      {:catch}
+        <p class="text text-red">Something terribly bad happened!</p>
+      {/await}
+    </div>
+    <div class="flex space-x-3 items-center mt-auto">
+      <button
+        class="control"
+        on:click={controls.previous}
+        disabled={currentIndex === 0}>Previous</button
+      >
+      <button
+        class="control"
+        on:click={controls.next}
+        disabled={currentIndex === history.length - 1}>Next</button
+      >
+    </div>
+    <button
+      class="mt-4"
+      on:click={() => (pushHistory(), setIndex(history.length - 1))}
+      >New fact</button
+    >
+  </Carousel>
 </main>
+
+<svelte:window on:keydown={keydownHandler(controls.previous, controls.next)} />
 
 <style>
   .text {
     @apply font-sans tracking-tighter text-xl subpixel-antialiasing text-center max-w-prose;
+  }
+
+  button {
+    @apply text p-6 border rounded-xl transition bg-white cursor-pointer select-none;
+    @apply hover:border-orange hover:bg-orange hover:text-white;
+    @apply focus:outline-none focus-visible:border-orange focus-visible:bg-orange focus-visible:text-white;
+  }
+
+  .control {
+    @apply p-3 select-none;
+    @apply hover:border-blue hover:bg-blue;
+    @apply focus-visible:border-blue focus-visible:bg-blue;
+    @apply disabled:pointer-events-none disabled:opacity-50;
   }
 </style>
