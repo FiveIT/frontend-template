@@ -74,7 +74,7 @@ export default class Queue {
   /**
    * Returns a read-only reference to the buffer used for the queue.
    *
-   * @returns {ReadonlyArray<T>} The underlying buffer
+   * @returns {readonly T[]} The underlying buffer
    */
   array() {
     return this.buffer

@@ -1,29 +1,26 @@
-# 5IT Template
+# Svelte Routify WindiCSS Vite
 
-Pe acest template se va baza platforma noastră online.
+A starter template for Svelte Application with Typescript, uses Routify file-based router, WindiCSS to compile TailwindCSS and Vite.
 
-WIP: mai trebuie făcută configurarea backend-ului.
+[Svelte](https://svelte.dev)  
+[Routify](https://routify.dev)  
+[Vite](https://vitejs.dev)  
+[WindiCSS](https://windicss.netlify.app)  
+[TypeScript](https://www.typescriptlang.org)
 
-## Utilizare
+Kudos to all the respective authors, special thanks to [@jakobrosenberg](https://github.com/jakobrosenberg) and [@dominikg](https://github.com/dominikg).
 
-### Front-end
+## Install
 
-Pentru serverul de development:
-
-```bash
+```
+git clone git@github.com:reepolee/svelte-routify-windi-vite.git best-dx
+cd best-dx
+npm i
 npm run dev
 ```
 
-Build-ul pentru producție nu este încă stabilit. Nu folosiți `npm run build`!
+## VS Code IntelliSense
 
-Pentru formatare:
+Install the official WindiCSS VS Code plugin for better experience.
 
-```bash
-npm run format
-```
-
-Pentru linting:
-
-```bash
-npm run lint
-```
+[WindiCSS Extension](https://marketplace.visualstudio.com/items?itemName=voorjaar.windicss-intellisense)

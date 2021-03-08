@@ -1,34 +1,47 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaults = require('windicss/defaultTheme')
 
-module.exports = {
-  darkMode: false,
+/**
+ * @type {import('windicss/types/interfaces').Config}
+ */
+const config = {
   theme: {
     colors: {
-      white: '#FCFAF9',
       orange: '#FF7F11',
       red: '#FF3F00',
       blue: '#485696',
-      'light-gray': '#DADADA',
-      gray: '#939393',
-      'dark-Gray': '#4F4F4F',
       green: '#008148',
+      current: 'currentColor',
+      transparent: 'transparent',
+      white: '#FCFAF9',
+      black: '#000000',
+      gray: {
+        light: '#DADADA',
+        DEFAULT: '#939393',
+        dark: '#4F4F4F',
+      },
       facebook: '#3B5998',
-      google: '#DE5246',
-      'google-docs': '#337DFA',
+      google: {
+        DEFAULT: '#DE5246',
+        docs: '#337DFA',
+      },
     },
     fontFamily: {
-      sans: ['Carme', ...defaultTheme.fontFamily.sans],
-      serif: ['Cardo', ...defaultTheme.fontFamily.serif],
+      sans: ['Carme', ...defaults.fontFamily.sans],
+      serif: ['Cardo', ...defaults.fontFamily.serif],
     },
-    maxWidth: (theme, { breakpoints }) => ({
-      ...defaultTheme.maxWidth(theme, { breakpoints }),
-      prose: '50ch',
-    }),
-  },
-  variants: {
-    extend: {
-      textDecoration: ['focus-visible'],
+    fontSize: {
+      base: ['1rem', '-0.055rem'],
+      md: ['1.75rem', '-0.125rem'],
+      lg: ['2.5rem', '-0.1rem'],
+      xl: ['6rem', '-0.2rem'],
+    },
+    spacing: {
+      sm: '0.625rem',
+      md: '1.25rem',
+      lg: '1.875rem',
     },
   },
-  plugins: [],
+  darkMode: false,
 }
+
+module.exports = config
