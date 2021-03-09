@@ -59,9 +59,9 @@ const config = {
       full: '9999px',
     },
     boxShadow: {
-      soft: '2px 2px 5px rgba(0, 0, 0, 0.25)',
-      DEFAULT: '2px 2px 5px rgba(0, 0, 0, 0.5)',
-      large: '4px 4px 5px rgba(0, 0, 0, 0.25)',
+      soft: 'var(--shadow-soft)',
+      DEFAULT: 'var(--shadow)',
+      large: 'var(--shadow-large)',
       none: 'none',
     },
   },
