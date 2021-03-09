@@ -2,7 +2,7 @@
 
 Acest proiect utilizează `pnpm`.
 
-Instalează dependency-urile:
+Instalează dependențele:
 
 ```sh
 pnpm i
@@ -32,17 +32,25 @@ Formatează codul:
 pnpm run format
 ```
 
+Testează codul:
+
+```sh
+pnpm t
+```
+
 ## Probleme
 
-Configurarea funcționează foarte bine, nu există probleme la încărcarea conținutului, refresh, build în general.
+### Variante Tailwind
+
+Configurarea funcționează foarte bine, nu există probleme la încărcarea conținutului, reîncărcarea paginii sau la build în general.
 
 Există totuși o particularitate la procesarea CSS: variantele Tailwind
 (`hover:`, `focus:` etc.) se pot folosi numai în clase. În combinație cu
-directiva `@apply` build-ul va esua. De exemplu, următorul cod nu va
+directiva `@apply` build-ul va eșua. De exemplu, următorul cod nu va
 fi compilat cu succes:
 
 ```css
-.class {
+.elem {
   @apply bg-white border rounded;
   @apply hover:bg-red;
 }
@@ -51,11 +59,21 @@ fi compilat cu succes:
 Pentru a obține același efect, folosiți pseudo-selectorii clasici CSS:
 
 ```css
-.class {
+.elem {
   @apply bg-white border rounded;
 }
 
-.class:hover {
+.elem:hover {
   @apply bg-red;
 }
 ```
+
+sau direct în markup:
+
+```html
+<div class="elem bg-white border rounded hover:bg-red" />
+```
+
+### Testare cod
+
+La momentul actual, configurarea Jest eșuează în a rula teste pe componentele Svelte. Fișierele `.js` sau `.ts` merg, în schimb.
