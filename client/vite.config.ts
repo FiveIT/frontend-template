@@ -28,6 +28,7 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         svelte: path.resolve(__dirname, 'node_modules/svelte'),
+        $components: path.resolve(__dirname, 'src/components'),
       },
     },
     plugins: [
