@@ -4,7 +4,7 @@
 
 Pentru a utiliza acest template, folosește [Docker][1] și [Visual Studio Code][2] cu extensia [Remote Containers][3].
 
-Dacă ești pe Windows, vei mai avea nevoie de [Windows Subsystem for Linux 2][4]. Este important să clonezi repository-ul pe filesystem-ul WSL-ului, altfel configurarea nu va funcționa cum trebuie!
+Dacă ești pe Windows, va trebui să instalezi înainte de toate [Windows Subsystem for Linux 2][4]. Este important să clonezi repository-ul pe filesystem-ul WSL-ului, altfel configurarea nu va funcționa cum trebuie!
 
 [//]: # 'FIXME: Make Jest work with Svelte'
 [//]: # 'TODO: Configure Cypress'
