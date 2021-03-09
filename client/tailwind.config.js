@@ -30,10 +30,24 @@ const config = {
       serif: ['Cardo', ...defaults.fontFamily.serif],
     },
     fontSize: {
-      base: ['1rem', '-0.055rem'],
-      md: ['1.75rem', '-0.125rem'],
-      lg: ['2.5rem', '-0.1rem'],
-      xl: ['6rem', '-0.2rem'],
+      base: ['1rem', { letterSpacing: '-0.055rem' }],
+      md: ['1.75rem', { letterSpacing: '-0.125rem' }],
+      lg: ['2.5rem', { letterSpacing: '-0.1rem' }],
+      xl: ['6rem', { letterSpacing: '-0.2rem' }],
+      prose: [
+        '1.125rem',
+        {
+          lineHeight: '150%',
+          letterSpacing: '0.007rem',
+        },
+      ],
+      title: [
+        '2.625rem',
+        {
+          lineHeight: '100%',
+          letterSpacing: '-0.225rem',
+        },
+      ],
     },
     spacing: {
       sm: '0.625rem',
