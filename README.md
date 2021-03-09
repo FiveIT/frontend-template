@@ -6,6 +6,10 @@ Pentru a utiliza acest template, folosește [Docker][1] și [Visual Studio Code]
 
 Dacă ești pe Windows, vei mai avea nevoie de [Windows Subsystem for Linux 2][4]. Este important să clonezi repository-ul pe filesystem-ul WSL-ului, altfel configurarea nu va funcționa cum trebuie!
 
+## TODO
+
+Vezi #3
+
 [//]: # 'FIXME: Make Jest work with Svelte'
 [//]: # 'TODO: Configure Cypress'
 [//]: # 'TODO: Create backend configuration'
