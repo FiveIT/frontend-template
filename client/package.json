@@ -9,7 +9,8 @@
     "serve-vite": "vite preview",
     "brotli:dist": "node br.js",
     "open": "start http://localhost:3000",
-    "validate": "svelte-check"
+    "validate": "svelte-check",
+    "format": "prettier -w src"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.2.0",
