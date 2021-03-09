@@ -7,11 +7,13 @@
 </script>
 
 <div class="w-full h-full relative">
-  <div class="fixed w-full h-full bg-white bg" />
   {#if $window.width > 530}
+    <div class="bg-white bg" />
     <Orange />
     <Red />
     <Blue />
+  {:else}
+    <div class="bg from-orange to-blue via-white bg-gradient-to-tl" />
   {/if}
 
   <main class="flex flex-col items-center w-full min-h-full">
@@ -39,5 +41,7 @@
 
   .bg {
     z-index: -1000;
+    filter: blur(100px);
+    @apply fixed w-full h-full;
   }
 </style>
