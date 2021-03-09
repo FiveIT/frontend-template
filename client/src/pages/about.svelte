@@ -4,6 +4,7 @@
   import { store as blue } from '../components/blob/Blue.svelte'
   import { store as window } from '../components/Window.svelte'
   import { onMount } from 'svelte'
+  import { ready } from '@roxi/routify'
 
   let mounted = false
   onMount(() => {
@@ -54,12 +55,15 @@
     fetch(
       'https://gist.githubusercontent.com/The5heepDev/a15539b297a7862af4f12ce07fee6bb7/raw/7164813a9b8d0a3b2dcffd5b80005f1967887475/entire_bee_movie_script'
     ).then(res => res.text())
+
+  const script = getBeeMovieScript()
+  script.then($ready)
 </script>
 
 <div class="flex flex-col items-center">
   <p class="text-base">This page presents many cat facts.</p>
   <p class="text-base">But also the Bee Movie script!</p>
-  {#await getBeeMovieScript() then text}
+  {#await script then text}
     <div
       class="script flex flex-col items-center space-y-md p-md border rounded mt-lg"
     >
