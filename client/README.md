@@ -1,29 +1,61 @@
-# 5IT Template
+# Eseuri frontend starter
 
-Pe acest template se va baza platforma noastră online.
+Acest proiect utilizează `pnpm`.
 
-WIP: mai trebuie făcută configurarea backend-ului.
+Instalează dependency-urile:
 
-## Utilizare
-
-### Front-end
-
-Pentru serverul de development:
-
-```bash
-npm run dev
+```sh
+pnpm i
 ```
 
-Build-ul pentru producție nu este încă stabilit. Nu folosiți `npm run build`!
+Rulează serverul de development:
 
-Pentru formatare:
-
-```bash
-npm run format
+```sh
+pnpm run dev
 ```
 
-Pentru linting:
+Compilează fișierele pentru producție:
 
-```bash
-npm run lint
+```sh
+pnpm run build
+```
+
+Servește fișierele de producție:
+
+```sh
+pnpm run serve-vite
+```
+
+Formatează codul:
+
+```sh
+pnpm run format
+```
+
+## Probleme
+
+Configurarea funcționează foarte bine, nu există probleme la încărcarea conținutului, refresh, build în general.
+
+Există totuși o particularitate la procesarea CSS: variantele Tailwind
+(`hover:`, `focus:` etc.) se pot folosi numai în clase. În combinație cu
+directiva `@apply` build-ul va esua. De exemplu, următorul cod nu va
+fi compilat cu succes:
+
+```css
+.class {
+  @apply bg-white border rounded;
+  @apply hover:bg-red;
+}
+```
+
+Pentru a obține același efect, folosiți pseudo-selectorii clasici CSS:
+
+```css
+.class {
+  @apply bg-white border rounded;
+}
+
+.class:hover {
+  @apply bg-red;
+}
 ```

@@ -1,5 +1,5 @@
 {
-  "forwardPorts": [5000, 5005],
+  "forwardPorts": [3000, 5000],
   "dockerComposeFile": "./docker-compose.yml",
   "service": "dev",
   "workspaceFolder": "/workspace",
@@ -45,6 +45,7 @@
     "stylelint.vscode-stylelint",
     // Tools
     "ms-azuretools.vscode-docker",
-    "mtxr.sqltools"
+    "mtxr.sqltools",
+    "shd101wyy.markdown-preview-enhanced"
   ]
 }
