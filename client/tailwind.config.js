@@ -54,6 +54,9 @@ const config = {
       md: '1.25rem',
       lg: '1.875rem',
     },
+    borderRadius: {
+      DEFAULT: '0.625rem',
+    },
   },
   darkMode: false,
 }
