@@ -56,6 +56,7 @@ const config = {
     },
     borderRadius: {
       DEFAULT: '0.625rem',
+      full: '9999px',
     },
     boxShadow: {
       soft: '2px 2px 5px rgba(0, 0, 0, 0.25)',
