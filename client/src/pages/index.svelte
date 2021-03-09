@@ -117,7 +117,7 @@
       <p class="text text-red">Something terribly bad happened!</p>
     {/await}
   </div>
-  <div class="flex space-x-3 items-center mt-auto">
+  <div class="flex space-x-sm items-center mt-auto">
     <button
       class="control text"
       on:click={controls.previous}
@@ -130,7 +130,7 @@
     >
   </div>
   <button
-    class="mt-4 text"
+    class="mt-sm text"
     on:click={() => (pushHistory(), setIndex(history.length - 1))}
     >New fact</button
   >
@@ -145,7 +145,7 @@
 
   button {
     backdrop-filter: blur(100px);
-    @apply p-6 border rounded-xl transition bg-white cursor-pointer select-none outline-none bg-opacity-50;
+    @apply p-lg border rounded transition bg-white cursor-pointer select-none outline-none bg-opacity-50;
   }
 
   button:hover,
@@ -154,7 +154,7 @@
   }
 
   .control {
-    @apply p-3;
+    @apply p-sm;
   }
 
   .control:hover,

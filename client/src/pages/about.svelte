@@ -61,7 +61,7 @@
   <p class="text-base">But also the Bee Movie script!</p>
   {#await getBeeMovieScript() then text}
     <div
-      class="script flex flex-col items-center space-y-md p-md border rounded-lg mt-lg"
+      class="script flex flex-col items-center space-y-md p-md border rounded mt-lg"
     >
       <h2
         class="font-serif text-center text-title subpixel-antialiasing text-black font-normal"
