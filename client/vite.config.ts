@@ -48,8 +48,8 @@ export default defineConfig(({ mode }) => {
         hot: !isProduction,
         compilerOptions: {
           dev: !isProduction,
-          css: true,
         },
+        emitCss: true,
         preprocess: preprocess(),
       }),
       indexReplace(),
