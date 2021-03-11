@@ -1,12 +1,12 @@
 <script lang="ts">
   import { Carousel } from 'renderless-svelte'
   import type { CarouselControls } from 'renderless-svelte'
-  import Queue from '../queue'
+  import Queue from '$/queue'
   import { metatags, ready } from '@roxi/routify'
-  import { store as orange } from '../components/blob/Orange.svelte'
-  import { store as red } from '../components/blob/Red.svelte'
-  import { store as blue } from '../components/blob/Blue.svelte'
-  import { store as window } from '../components/Window.svelte'
+  import { store as orange } from '$/components/blob/Orange.svelte'
+  import { store as red } from '$/components/blob/Red.svelte'
+  import { store as blue } from '$/components/blob/Blue.svelte'
+  import { store as window } from '$/components/Window.svelte'
   import { onMount } from 'svelte'
 
   metatags.title = 'Cat facts'
@@ -21,8 +21,8 @@
         const res = fetch(
           'https://cat-fact.herokuapp.com/facts/random?amount=10'
         )
-          .then(res => res.json())
-          .then((res: { text: string }[]) => res.map(r => r.text))
+          .then(res => res.json() as Promise<{ text: string }[]>)
+          .then(res => res.map(r => r.text))
         responses.push(res)
       }
       if (length === 0) {

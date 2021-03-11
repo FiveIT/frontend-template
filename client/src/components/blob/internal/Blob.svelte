@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { fade } from 'svelte/transition'
   import { cubicOut as easing } from 'svelte/easing'
+  import { fade } from 'svelte/transition'
 
   export let x: number
   export let y: number

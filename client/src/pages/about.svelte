@@ -1,12 +1,13 @@
 <script>
-  import { store as orange } from '../components/blob/Orange.svelte'
-  import { store as red } from '../components/blob/Red.svelte'
-  import { store as blue } from '../components/blob/Blue.svelte'
-  import { store as window } from '../components/Window.svelte'
-  import { onMount } from 'svelte'
   import { ready } from '@roxi/routify'
+  import { onMount } from 'svelte'
+  import { store as window } from '$/components/Window.svelte'
+  import { store as blue } from '$/components/blob/Blue.svelte'
+  import { store as orange } from '$/components/blob/Orange.svelte'
+  import { store as red } from '$/components/blob/Red.svelte'
 
   let mounted = false
+
   onMount(() => {
     $orange = {
       x: 10,
@@ -18,7 +19,6 @@
         y: 0,
       },
     }
-
     $red = {
       x: $window.width - red.width,
       y: 0,
@@ -29,7 +29,6 @@
         y: 0,
       },
     }
-
     $blue = {
       x: $window.width - blue.width * 1.03,
       y: $window.height - blue.height * 0.4,
@@ -40,7 +39,6 @@
         y: 0,
       },
     }
-
     mounted = true
   })
 

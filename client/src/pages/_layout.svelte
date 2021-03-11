@@ -1,9 +1,9 @@
 <script>
-  import Orange from '$components/blob/Orange.svelte'
-  import Red from '$components/blob/Red.svelte'
-  import Blue from '$components/blob/Blue.svelte'
   import { url, isActive } from '@roxi/routify'
-  import { store as window } from '../components/Window.svelte'
+  import { store as window } from '$/components/Window.svelte'
+  import Blue from '$/components/blob/Blue.svelte'
+  import Orange from '$/components/blob/Orange.svelte'
+  import Red from '$/components/blob/Red.svelte'
 </script>
 
 <div class="w-full h-full relative">
