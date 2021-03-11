@@ -20,7 +20,10 @@
     "go.lintTool": "golangci-lint",
     "go.lintFlags": ["--fast", "--enable-all", "--new"],
     "go.useLanguageServer": true,
-    "terminal.integrated.shell.linux": "/bin/bash"
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "svelte.plugin.css.enable": false,
+    "tailwindCSS.rootFontSize": 18,
+    "eslint.validate": ["typescript", "svelte"]
   },
   "extensions": [
     // Collaboration
