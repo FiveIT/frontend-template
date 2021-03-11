@@ -6,5 +6,10 @@
   "svelteAllowShorthand": true,
   "svelteIndentScriptAndStyle": true,
   "svelteSortOrder": "scripts-markup-options-styles",
-  "svelteBracketNewLine": true
+  "svelteBracketNewLine": false,
+  "endOfLine": "lf",
+  "useTabs": false,
+  "pluginSearchDirs": ["./"],
+  "importOrder": ["^@roxi/routify(.*)$", "^\\$/(.*)$", "^[./]"],
+  "importOrderSeparation": true
 }
