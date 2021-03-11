@@ -9,7 +9,5 @@
   "svelteBracketNewLine": false,
   "endOfLine": "lf",
   "useTabs": false,
-  "pluginSearchDirs": ["./"],
-  "importOrder": ["^@roxi/routify(.*)$", "^\\$/(.*)$", "^[./]"],
-  "importOrderSeparation": true
+  "pluginSearchDirs": ["./"]
 }
