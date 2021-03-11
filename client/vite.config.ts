@@ -1,12 +1,12 @@
 // vite.config.js
-import path from 'path'
-import svelte from '@svitejs/vite-plugin-svelte'
-import windiCSS from 'vite-plugin-windicss'
-import { minify } from 'html-minifier'
-import preprocess from 'svelte-preprocess'
-
-// const { defineConfig } = require("vite");
 import { defineConfig } from 'vite'
+import { minify } from 'html-minifier'
+import path from 'path'
+import preprocess from 'svelte-preprocess'
+import svelte from '@svitejs/vite-plugin-svelte'
+// const { defineConfig } = require("vite");
+import windiCSS from 'vite-plugin-windicss'
+
 const indexReplace = () => {
   return {
     name: 'html-transform',
@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         svelte: path.resolve(__dirname, 'node_modules/svelte'),
-        $components: path.resolve(__dirname, 'src/components'),
+        $: path.resolve(__dirname, 'src'),
       },
     },
     plugins: [
@@ -39,7 +39,7 @@ export default defineConfig(({ mode }) => {
         debug: true,
         config: 'tailwind.config.js', // tailwind config file path (optional)
         compile: false, // false: interpretation mode; true: compilation mode
-        prefix: 'windi-', // set compilation mode style prefix
+        prefix: 'css-', // set compilation mode style prefix
         globalPreflight: true, // set preflight style is global or scoped
         globalUtility: true, // set utility style is global or scoped
       }),
