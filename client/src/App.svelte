@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Router } from '@roxi/routify'
+  import Window from '$/components/Window.svelte'
   import { routes } from '../.routify/routes'
-  import Window from './components/Window.svelte'
 </script>
 
 <Router {routes} />

@@ -8,6 +8,7 @@ devDependencies:
   '@svitejs/vite-plugin-svelte': 0.9.4_svelte@3.35.0+vite@2.0.5
   '@testing-library/jest-dom': 5.11.9
   '@testing-library/svelte': 3.0.3_svelte@3.35.0
+  '@trivago/prettier-plugin-sort-imports': 1.4.4
   '@tsconfig/svelte': 1.0.10
   '@types/html-minifier': 4.0.0
   '@types/jest': 26.0.20
@@ -1395,6 +1396,20 @@ packages:
       svelte: 3.x
     resolution:
       integrity: sha512-GxafAllShGM2nkntFGURZ7fYVlUYwv7K62lqv1aFqtTYzzeZ2Cu8zTVhtE/Qt3bk2zMl6+FPKP03wjLip/G8mA==
+  /@trivago/prettier-plugin-sort-imports/1.4.4:
+    dependencies:
+      '@babel/core': 7.13.10
+      '@babel/generator': 7.13.9
+      '@babel/parser': 7.13.10
+      '@babel/traverse': 7.13.0
+      '@babel/types': 7.13.0
+      '@types/lodash': 4.14.168
+      javascript-natural-sort: 0.7.1
+      lodash: 4.17.21
+      prettier: 2.2.1
+    dev: true
+    resolution:
+      integrity: sha512-tIdq079Xs7dIT8hYnKbY5p4AUz5UzOvbzBhM/xgYn1z2/Es//tBE8/zIzVJ3uyBLWe7xCDNEFmzHx3K9aU/oIg==
   /@tsconfig/svelte/1.0.10:
     dev: true
     resolution:
@@ -1484,6 +1499,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-cxWFQVseBm6O9Gbw1IWb8r6OS4OhSt3hPZLkFApLjM8TEXROBuQGLAH2i2gZpcXdLBIrpXuTDhH7Vbm1iXmNGA==
+  /@types/lodash/4.14.168:
+    dev: true
+    resolution:
+      integrity: sha512-oVfRvqHV/V6D1yifJbVRU3TMp8OT6o6BG+U9MkwuJ3U8/CsDHvalRpsxBqivn71ztOFZBTfJMvETbqHiaNSj7Q==
   /@types/node/12.20.4:
     dev: true
     resolution:
@@ -3738,6 +3757,10 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-9tZvz7AiR3PEDNGiV9vIouQ/EAcqMXFmkcA1CDFTwOB98OZVDL0PH9glHotf5Ugp6GCOTypfzGWI/OqjWNCRUw==
+  /javascript-natural-sort/0.7.1:
+    dev: true
+    resolution:
+      integrity: sha1-+eIwPUUH9tdDVac2ZNFED7Wg71k=
   /jest-changed-files/26.6.2:
     dependencies:
       '@jest/types': 26.6.2
@@ -6499,6 +6522,7 @@ specifiers:
   '@svitejs/vite-plugin-svelte': ^0.9.4
   '@testing-library/jest-dom': ^5.11.9
   '@testing-library/svelte': ^3.0.3
+  '@trivago/prettier-plugin-sort-imports': ^1.4.4
   '@tsconfig/svelte': ^1.0.10
   '@types/html-minifier': ^4.0.0
   '@types/jest': ^26.0.20
