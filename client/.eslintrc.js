@@ -17,5 +17,7 @@ module.exports = {
       processor: 'svelte3/svelte3',
     },
   ],
-  rules: {},
+  settings: {
+    'svelte3/typescript': require('typescript'),
+  },
 }
