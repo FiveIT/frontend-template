@@ -1,15 +1,79 @@
-# Template
+# Eseuri frontend starter
 
-În lucru, vezi [frontend](client/README.md).
+Acest proiect utilizează `pnpm`.
 
-Pentru a utiliza acest template, folosește [Docker][1] și [Visual Studio Code][2] cu extensia [Remote Containers][3].
+Instalează dependențele:
 
-Dacă ești pe Windows, va trebui să instalezi înainte de toate [Windows Subsystem for Linux 2][4]. Este important să clonezi repository-ul pe filesystem-ul WSL-ului, altfel configurarea nu va funcționa cum trebuie!
+```sh
+pnpm i
+```
 
-[//]: # 'TODO: Configure Cypress'
-[//]: # 'TODO: Create backend configuration'
-[//]: # 'TODO: Configure Github Actions'
-[1]: https://www.docker.com/
-[2]: https://code.visualstudio.com/
-[3]: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers
-[4]: https://docs.microsoft.com/en-us/windows/wsl/install-win10
+Rulează serverul de development:
+
+```sh
+pnpm run dev
+```
+
+Compilează fișierele pentru producție:
+
+```sh
+pnpm run build
+```
+
+Servește fișierele de producție:
+
+```sh
+pnpm run serve-vite
+```
+
+Formatează codul:
+
+```sh
+pnpm run format
+```
+
+Testează codul:
+
+```sh
+pnpm t
+```
+
+## Probleme
+
+### Variante Tailwind
+
+Configurarea funcționează foarte bine, nu există probleme la încărcarea conținutului, reîncărcarea paginii sau la build în general.
+
+Există totuși o particularitate la procesarea CSS: variantele Tailwind
+(`hover:`, `focus:` etc.) se pot folosi numai în clase. În combinație cu
+directiva `@apply` build-ul va eșua. De exemplu, următorul cod nu va
+fi compilat cu succes:
+
+```css
+.elem {
+  @apply bg-white border rounded;
+  @apply hover:bg-red;
+}
+```
+
+Pentru a obține același efect, folosiți pseudo-selectorii clasici CSS:
+
+```css
+.elem {
+  @apply bg-white border rounded;
+}
+
+.elem:hover {
+  @apply bg-red;
+}
+```
+
+sau direct în markup:
+
+```html
+<div class="elem bg-white border rounded hover:bg-red" />
+```
+
+### Testare cod
+
+La momentul actual, configurarea Jest eșuează în a rula teste pe componentele Svelte. Fișierele `.js` sau `.ts` merg, în schimb.
