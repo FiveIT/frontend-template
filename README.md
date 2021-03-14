@@ -7,7 +7,6 @@ Pentru a utiliza acest template, folosește [Docker][1] și [Visual Studio Code]
 Dacă ești pe Windows, va trebui să instalezi înainte de toate [Windows Subsystem for Linux 2][4]. Este important să clonezi repository-ul pe filesystem-ul WSL-ului, altfel configurarea nu va funcționa cum trebuie!
 
 [//]: # 'TODO: Configure Cypress'
-[//]: # 'TODO: Create backend configuration'
 [//]: # 'TODO: Configure Github Actions'
 [1]: https://www.docker.com/
 [2]: https://code.visualstudio.com/

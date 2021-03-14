@@ -55,7 +55,8 @@
       "**/.gitignore": true,
       ".golangci.yml": true,
       "netlify.toml": true,
-      ".netlify": true
+      ".netlify": true,
+      ".devcontainer": true
     }
   },
   "extensions": [
