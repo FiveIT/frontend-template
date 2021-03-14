@@ -1,6 +1,6 @@
 // vite.config.js
 import { defineConfig } from 'vite'
-import { minify } from 'html-minifier'
+// import { minify } from 'html-minifier'
 import path from 'path'
 import preprocess from 'svelte-preprocess'
 import svelte from '@svitejs/vite-plugin-svelte'
