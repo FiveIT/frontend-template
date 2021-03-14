@@ -50,7 +50,8 @@
       "web/node_modules": true,
       "tmp": true,
       "go.sum": true,
-      "vendor": true
+      "vendor": true,
+      ".air.toml": true
     }
   },
   "extensions": [
