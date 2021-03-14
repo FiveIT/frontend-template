@@ -4,3 +4,5 @@ dist/
 .DS_Store
 .routify/
 pnpm-lock.yaml
+package-lock.json
+yarn.lock
