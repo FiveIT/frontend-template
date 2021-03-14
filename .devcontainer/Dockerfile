@@ -8,28 +8,22 @@ RUN apt-get update -y && apt-get upgrade -y
 # Install required binaries, such as apt-add-repository
 RUN apt-get install software-properties-common unzip wget curl -y
 
-# Install Github CLI
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0 \
-  && apt-add-repository https://cli.github.com/packages -y \
-  && apt-get update -y \
-  && apt-get install gh -y
-
 # Download all packages here
 WORKDIR /deps
 
 RUN touch /root/.bashrc
 
 # Install the AWS CLI
-RUN wget https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip \
-  && unzip awscli-exe-linux-x86_64.zip \
-  && ./aws/install
-
+# RUN wget https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip \
+  # && unzip awscli-exe-linux-x86_64.zip \
+  # && ./aws/install
+# 
 # Install the Google Cloud SDK
-RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" \
-  | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list \
-  && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg \
-  | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add - \
-  && apt-get update -y && apt-get install google-cloud-sdk -y
+# RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" \
+  # | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list \
+  # && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg \
+  # | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add - \
+  # && apt-get update -y && apt-get install google-cloud-sdk -y
 
 # Install Go
 ARG GO_VERSION=1.16
@@ -58,5 +52,22 @@ RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | 
 
 RUN alias npm=pnpm
 RUN alias npx=pnpx
+
+# Install Docker CE CLI
+# RUN apt-get update \
+  # && apt-get install -y apt-transport-https ca-certificates curl gnupg2 lsb-release \
+  # && curl -fsSL https://download.docker.com/linux/$(lsb_release -is | tr '[:upper:]' '[:lower:]')/gpg | apt-key add - 2>/dev/null \
+  # && echo "deb [arch=amd64] https://download.docker.com/linux/$(lsb_release -is | tr '[:upper:]' '[:lower:]') $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list \
+  # && apt-get update \
+  # && apt-get install -y docker-ce-cli
+
+# Install Github CLI
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0 \
+  && apt-add-repository https://cli.github.com/packages -y \
+  && apt-get update -y \
+  && apt-get install gh -y
+
+# Install make
+RUN apt-get install make -y
 
 WORKDIR /workspace
