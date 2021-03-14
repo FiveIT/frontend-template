@@ -1,5 +1,4 @@
 {
-  "forwardPorts": [3000, 8080],
   "dockerComposeFile": "./docker-compose.yml",
   "service": "dev",
   "workspaceFolder": "/workspace",
@@ -40,15 +39,18 @@
       ".pnpm-store": true,
       "web/tsconfig.json": true,
       "web/vite.config.ts": true,
-      "web/routify.config.js": true,
+      "web/routify.config.cjs": true,
       "web/br.cjs": true,
-      "web/prettierrc": true,
-      "web/prettierignore": true,
-      "web/eslintrc.cjs": true,
+      "web/.prettierrc": true,
+      "web/.prettierignore": true,
+      "web/.eslintrc.cjs": true,
       "web/**/pnpm-lock.yaml": true,
       "web/.routify": true,
       "web/dist": true,
-      "tmp": true
+      "web/node_modules": true,
+      "tmp": true,
+      "go.sum": true,
+      "vendor": true
     }
   },
   "extensions": [
