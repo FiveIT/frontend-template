@@ -51,7 +51,9 @@
       "tmp": true,
       "go.sum": true,
       "vendor": true,
-      ".air.toml": true
+      ".air.toml": true,
+      "**/.gitignore": true,
+      "**/*.env": true
     }
   },
   "extensions": [
