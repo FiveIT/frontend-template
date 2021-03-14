@@ -27,17 +27,17 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       alias: {
-        svelte: path.resolve(__dirname, 'node_modules/svelte'),
-        $: path.resolve(__dirname, 'src'),
+        svelte: path.resolve(process.cwd(), 'node_modules/svelte'),
+        $: path.resolve(process.cwd(), 'src'),
       },
     },
     plugins: [
-      windiCSS({
+      windiCSS.default({
         //@ts-ignore
         verbose: true,
         silent: false,
         debug: true,
-        config: 'tailwind.config.js', // tailwind config file path (optional)
+        config: 'tailwind.config.cjs', // tailwind config file path (optional)
         compile: false, // false: interpretation mode; true: compilation mode
         prefix: 'css-', // set compilation mode style prefix
         globalPreflight: true, // set preflight style is global or scoped
