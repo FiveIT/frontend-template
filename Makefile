@@ -3,8 +3,16 @@
 	build-dev dev-server dev-client dev \
 	test-client test-server test
 
+go_module=github.com/FiveIT/template
+
 build-server:
-	go build -o ./.netlify/functions/index ./cmd/index
+	go build \
+	-ldflags "\
+	-X $(go_module)/internal/meta.context=${CONTEXT} \
+	-X $(go_module)/internal/meta.url=${URL} \
+	-X $(go_module)/internal/meta.netlify=${NETLIFY} \
+	" \
+	-o ./.netlify/functions/index ./cmd/index
 
 build-client:
 	cd web && npm i && npm run build

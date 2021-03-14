@@ -1,16 +1,15 @@
 package meta
 
 import (
-	"os"
-
 	"github.com/rs/zerolog/log"
 )
 
 var (
-	context = os.Getenv("CONTEXT")
-	url     = os.Getenv("URL")
+	context string
+	url     string
+	netlify string
 	// IsNetlify specifies if the app was built by Netlify.
-	IsNetlify = os.Getenv("NETLIFY") == "true"
+	IsNetlify = netlify == "true"
 	// IsProduction specifies if the app was built in production mode.
 	IsProduction = context == "production"
 	// IsDevelopment specifies if the app was built in development mode.
