@@ -38,7 +38,7 @@ RUN go get github.com/fatih/gomodifytags
 RUN go get github.com/josharian/impl
 RUN go get github.com/cweill/gotests/...
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.37.1
-RUN go get github.com/cosmtrek/air
+RUN go get -u github.com/cosmtrek/air
 ENV PATH /root/go/bin:${PATH}
 
 # Install NVM, Node, and pnpm 
