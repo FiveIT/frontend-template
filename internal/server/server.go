@@ -11,14 +11,14 @@ import (
 func New() *fiber.App {
 	app := fiber.New()
 
-	app.Use(cors.New(cors.Config{
-		AllowOrigins: meta.URL(),
-	}))
-
 	var routes fiber.Router = app
 	if meta.IsNetlify {
 		routes = app.Group(meta.FunctionsBasePath)
 	}
+
+	routes.Use(cors.New(cors.Config{
+		AllowOrigins: meta.URL(),
+	}))
 
 	// Routes go here
 	routes.Get("/", func(c *fiber.Ctx) error {
