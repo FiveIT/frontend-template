@@ -16,6 +16,7 @@ func New() *fiber.App {
 	// Redirect required for Netlify
 	app.Use(redirect.New(redirect.Config{
 		Rules: map[string]string{
+			"/.netlify/functions/index":   "/",
 			"/.netlify/functions/index/*": "/$1",
 		},
 		StatusCode: http.StatusOK,
@@ -28,7 +29,7 @@ func New() *fiber.App {
 	}))
 
 	// Routes go here
-	app.Get("/.netlify/functions/index", func(c *fiber.Ctx) error {
+	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("sarmale cu ghimbir")
 	})
 
