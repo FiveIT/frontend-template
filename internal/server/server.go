@@ -28,7 +28,7 @@ func New() *fiber.App {
 	}))
 
 	// Routes go here
-	app.Get("/", func(c *fiber.Ctx) error {
+	app.Get("/.netlify/functions/index", func(c *fiber.Ctx) error {
 		return c.SendString("sarmale cu ghimbir")
 	})
 
