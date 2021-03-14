@@ -55,7 +55,12 @@
     ).then(res => res.text())
 
   const script = getBeeMovieScript()
-  script.then($ready)
+
+  const composition = fetch(`${import.meta.env.FUNCTIONS_URL}/`).then(res =>
+    res.text()
+  )
+
+  Promise.all([script, composition]).then($ready)
 </script>
 
 <div class="flex flex-col items-center">
@@ -63,11 +68,9 @@
   <p class="text-base">But also the Bee Movie script!</p>
   {#await script then text}
     <div
-      class="script flex flex-col items-center space-y-md p-md border rounded mt-lg"
-    >
+      class="script flex flex-col items-center space-y-md p-md border rounded mt-lg">
       <h2
-        class="font-serif text-center text-title subpixel-antialiasing text-black font-normal"
-      >
+        class="font-serif text-center text-title subpixel-antialiasing text-black font-normal">
         The Bee Movie Script
       </h2>
       <p class="font-serif text-prose subpixel-antialiasing max-w-prose">
@@ -78,6 +81,14 @@
     <p class="text-base text-red">Something terribly unholy happened!</p>
   {/await}
 </div>
+<footer class="mt-lg flex flex-col items-center">
+  {#await composition then text}
+    <p class="text-base text-green">{text}</p>
+  {:catch err}
+    <p class="text-base text-red">Nani the fuck?</p>
+    <pre class="text-red">{err}</pre>
+  {/await}
+</footer>
 
 <style>
   .script {
