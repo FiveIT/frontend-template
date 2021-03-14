@@ -57,7 +57,7 @@ export default defineConfig(({ mode }) => {
         emitCss: true,
         preprocess: preprocess(),
       }),
-      indexReplace(),
+      //indexReplace(),
     ],
     build: {
       minify: isProduction,
