@@ -1,7 +1,7 @@
 .PHONY: build-dev dev dev-server dev-client build-prod
 
 build-dev:
-	go build -tags=dev -o ./tmp/index ./cmd/index
+	go build -o ./tmp/index ./cmd/index
 
 build-prod:
 	go build -o ./.netlify/functions/index ./cmd/index
