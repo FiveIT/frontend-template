@@ -1,8 +1,10 @@
 {
-  "forwardPorts": [3000, 5000],
   "dockerComposeFile": "./docker-compose.yml",
   "service": "dev",
   "workspaceFolder": "/workspace",
+  "remoteEnv": {
+    "HOST_PROJECT_PATH": "${localWorkspaceFolder}"
+  },
   "settings": {
     "css.validate": false,
     "editor.formatOnSave": true,
@@ -20,10 +22,40 @@
     "go.lintTool": "golangci-lint",
     "go.lintFlags": ["--fast", "--enable-all", "--new"],
     "go.useLanguageServer": true,
+    "gopls": {
+      "build.buildFlags": ["-tags=dev"]
+    },
     "terminal.integrated.shell.linux": "/bin/bash",
     "svelte.plugin.css.enable": false,
     "tailwindCSS.rootFontSize": 18,
-    "eslint.validate": ["typescript", "svelte"]
+    "eslint.validate": ["typescript", "svelte"],
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "node_modules": true,
+      ".pnpm-store": true,
+      "web/tsconfig.json": true,
+      "web/vite.config.ts": true,
+      "web/routify.config.cjs": true,
+      "web/br.cjs": true,
+      "web/.prettierrc": true,
+      "web/.prettierignore": true,
+      "web/.eslintrc.cjs": true,
+      "web/**/pnpm-lock.yaml": true,
+      "web/.routify": true,
+      "web/dist": true,
+      "web/node_modules": true,
+      "tmp": true,
+      "go.sum": true,
+      "vendor": true,
+      ".air.toml": true,
+      "**/.gitignore": true,
+      "**/*.env": true,
+      ".golangci.yml": true
+    }
   },
   "extensions": [
     // Collaboration
@@ -41,6 +73,7 @@
     "golang.go",
     "redhat.vscode-yaml",
     "svelte.svelte-vscode",
+    "graphql.vscode-graphql",
     "visualstudioexptteam.vscodeintellicode",
     // Linters & formatters
     "dbaeumer.vscode-eslint",
