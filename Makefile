@@ -7,7 +7,7 @@ build-server:
 	go build -o ./.netlify/functions/index ./cmd/index
 
 build-client:
-	cd web && npm run build
+	cd web && npm i && npm run build
 
 build: build-server build-client
 
