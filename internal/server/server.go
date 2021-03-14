@@ -19,7 +19,7 @@ func New() *fiber.App {
 			"/.netlify/functions/index":   "/",
 			"/.netlify/functions/index/*": "/$1",
 		},
-		StatusCode: http.StatusOK,
+		StatusCode: http.StatusFound,
 	}))
 
 	app.Use(logger.New())
