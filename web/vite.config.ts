@@ -7,16 +7,16 @@ import svelte from '@svitejs/vite-plugin-svelte'
 // const { defineConfig } = require("vite");
 import windiCSS from 'vite-plugin-windicss'
 
-const indexReplace = () => {
-  return {
-    name: 'html-transform',
-    transformIndexHtml(html) {
-      return minify(html, {
-        collapseWhitespace: true,
-      })
-    },
-  }
-}
+// const indexReplace = () => {
+//   return {
+//     name: 'html-transform',
+//     transformIndexHtml(html) {
+//       return minify(html, {
+//         collapseWhitespace: true,
+//       })
+//     },
+//   }
+// }
 
 export default defineConfig(({ mode }) => {
   const isProduction = mode === 'production'
