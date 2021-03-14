@@ -53,8 +53,8 @@
       "vendor": true,
       ".air.toml": true,
       "**/.gitignore": true,
-      "**/*.env": true,
-      ".golangci.yml": true
+      ".golangci.yml": true,
+      "netlify.toml": true
     }
   },
   "extensions": [
