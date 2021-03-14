@@ -2,3 +2,8 @@
 publish = "web/dist"
 functions = ".netlify/functions"
 command = "make -j2 build"
+
+[build.environment]
+FUNCTIONS_URL = "/.netlify/functions"
+NODE_VERSION = 15
+GO_IMPORT_PATH = "github.com/FiveIT/template"
