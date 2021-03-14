@@ -4,6 +4,7 @@
 	test-client test-server test
 
 go_module=github.com/FiveIT/template
+functions_base_path=/.netlify/functions/index
 
 build-server:
 	go build \
@@ -11,8 +12,9 @@ build-server:
 	-X $(go_module)/internal/meta.context=${CONTEXT} \
 	-X $(go_module)/internal/meta.url=${URL} \
 	-X $(go_module)/internal/meta.netlify=${NETLIFY} \
+	-X $(go_module)/internal/meta.FunctionsBasePath=$(functions_base_path) \
 	" \
-	-o ./.netlify/functions/index ./cmd/index
+	-o .$(functions_base_path) ./cmd/index
 
 build-client:
 	cd web && npm i && npm run build

@@ -18,6 +18,8 @@ var (
 	IsDeployPreview = context == "deploy-preview"
 	// IsBranchDeploy specifies if Netlify built the site from a branch different than the site's main production branch.
 	IsBranchDeply = context == "branch-deploy"
+	// FunctionsBasePath is the location of the function handler when deployed to Netlify.
+	FunctionsBasePath string
 )
 
 // URL returns the addres at which the client app exists.
