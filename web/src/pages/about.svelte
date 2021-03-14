@@ -56,9 +56,9 @@
 
   const script = getBeeMovieScript()
 
-  const composition = fetch(`${import.meta.env.FUNCTIONS_URL}/`, {
-    redirect: 'follow',
-  }).then(res => res.text())
+  const composition = fetch(`${import.meta.env.FUNCTIONS_URL}/`).then(res =>
+    res.text()
+  )
 
   Promise.all([script, composition]).then($ready)
 </script>
