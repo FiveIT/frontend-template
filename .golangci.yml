@@ -1,0 +1,2 @@
+linters-settings:
+  exhaustivestruct: false
