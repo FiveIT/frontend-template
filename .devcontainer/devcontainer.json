@@ -54,7 +54,8 @@
       ".air.toml": true,
       "**/.gitignore": true,
       ".golangci.yml": true,
-      "netlify.toml": true
+      "netlify.toml": true,
+      ".netlify": true
     }
   },
   "extensions": [
