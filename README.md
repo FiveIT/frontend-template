@@ -1,6 +1,6 @@
 # Template
 
-În lucru, vezi [frontend](client/README.md).
+În lucru, vezi [frontend](web/README.md).
 
 Pentru a utiliza acest template, folosește [Docker][1] și [Visual Studio Code][2] cu extensia [Remote Containers][3].
 
