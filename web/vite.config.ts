@@ -1,22 +1,21 @@
 // vite.config.js
 import { defineConfig } from 'vite'
-// import { minify } from 'html-minifier'
+import { minify } from 'html-minifier'
 import path from 'path'
 import preprocess from 'svelte-preprocess'
 import svelte from '@svitejs/vite-plugin-svelte'
-// const { defineConfig } = require("vite");
 import windiCSS from 'vite-plugin-windicss'
 
-// const indexReplace = () => {
-//   return {
-//     name: 'html-transform',
-//     transformIndexHtml(html) {
-//       return minify(html, {
-//         collapseWhitespace: true,
-//       })
-//     },
-//   }
-// }
+const indexReplace = () => {
+  return {
+    name: 'html-transform',
+    transformIndexHtml(html) {
+      return minify(html, {
+        collapseWhitespace: true,
+      })
+    },
+  }
+}
 
 export default defineConfig(({ mode }) => {
   const isProduction = mode === 'production'
@@ -57,7 +56,7 @@ export default defineConfig(({ mode }) => {
         emitCss: true,
         preprocess: preprocess(),
       }),
-      //indexReplace(),
+      indexReplace(),
     ],
     build: {
       minify: isProduction,
