@@ -112,7 +112,9 @@
     {#await payload}
       <p class="text text-blue">Retrieving a cat fact...</p>
     {:then text}
-      <p class="font-serif text-prose text-center max-w-prose">{text}</p>
+      <p class="font-serif text-prose text-center max-w-prose">
+        {text}
+      </p>
     {:catch}
       <p class="text text-red">Something terribly bad happened!</p>
     {/await}
@@ -121,19 +123,16 @@
     <button
       class="control text"
       on:click={controls.previous}
-      disabled={currentIndex === 0}>Previous</button
-    >
+      disabled={currentIndex === 0}>Previous</button>
     <button
       class="control text"
       on:click={controls.next}
-      disabled={!items || currentIndex === items.length - 1}>Next</button
-    >
+      disabled={!items || currentIndex === items.length - 1}>Next</button>
   </div>
   <button
     class="mt-sm text"
     on:click={() => (pushHistory(), setIndex(history.length - 1))}
-    >New fact</button
-  >
+    >New fact</button>
 </Carousel>
 
 <svelte:window on:keydown={keydownHandler(controls.previous, controls.next)} />
