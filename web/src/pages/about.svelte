@@ -68,7 +68,7 @@
   <p class="text-base">But also the Bee Movie script!</p>
   {#await script then text}
     <div
-      class="script flex flex-col items-center space-y-md p-md border rounded mt-lg">
+      class="script flex flex-col items-center space-y-md p-md border rounded mt-lg bg-white bg-opacity-50">
       <h2
         class="font-serif text-center text-title subpixel-antialiasing text-black font-normal">
         The Bee Movie Script
@@ -91,7 +91,9 @@
 </footer>
 
 <style>
-  .script {
-    backdrop-filter: blur(100px);
+  @supports (backdrop-filter: blur(100px)) {
+    .script {
+      backdrop-filter: blur(100px);
+    }
   }
 </style>
