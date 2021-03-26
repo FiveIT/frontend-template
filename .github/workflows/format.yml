@@ -1,0 +1,59 @@
+on: [push, pull_request]
+name: Format and lint
+jobs:
+  setup:
+    name: Setup
+    runs-on: ubuntu-latest
+    env:
+      COMPOSE_FILE: .devcontainer/docker-compose.yml
+      DOCKER_USER: ${{ secrets.DOCKER_USER }}
+      DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - uses: actions/cache@v2
+        env:
+          cache-name: cache-pnpm-modules
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+      - uses: pnpm/action-setup@v1.2.1
+        with:
+          run_install: |
+            - cwd: web
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker-compose build
+  format:
+    needs: setup
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - name: goimports
+        uses: Jerome1337/goimports-action@v1.0.2
+      - name: prettier
+        run: pnpm format
+        working-directory: web
+  lint:
+    needs: setup
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v2
+      - name: eslint
+        run: pnpm lint
+        working-directory: web
+  test:
+    needs: lint
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: go test
+        run: docker-compose exec dev go test ./...
+      - name: jest
+        run: pnpm test
+        working-directory: web
