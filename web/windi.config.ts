@@ -1,9 +1,10 @@
-const defaults = require('windicss/defaultTheme')
+import defaults from 'windicss/defaultTheme'
+import { defineConfig } from 'vite-plugin-windicss'
 
 /**
  * @type {import('windicss/types/interfaces').Config}
  */
-const config = {
+export default defineConfig({
   theme: {
     colors: {
       orange: '#FF7F11',
@@ -66,6 +67,6 @@ const config = {
     },
   },
   darkMode: false,
-}
-
-module.exports = config
+  preflight: true,
+  transformCSS: 'post',
+})
