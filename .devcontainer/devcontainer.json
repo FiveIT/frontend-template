@@ -26,8 +26,7 @@
       "build.buildFlags": ["-tags=dev"]
     },
     "terminal.integrated.shell.linux": "/bin/bash",
-    "svelte.plugin.css.enable": false,
-    "tailwindCSS.rootFontSize": 18,
+    // "svelte.plugin.css.enable": false,
     "eslint.validate": ["typescript", "svelte"],
     "files.exclude": {
       "**/.git": true,
@@ -56,7 +55,8 @@
       ".golangci.yml": true,
       "netlify.toml": true,
       ".netlify": true,
-      ".devcontainer": true
+      ".devcontainer": true,
+      "./windi.config.ts": true
     }
   },
   "extensions": [
@@ -69,7 +69,7 @@
     "meganrogge.template-string-converter",
     "technosophos.vscode-make",
     // Language plugins
-    "bradlc.vscode-tailwindcss",
+    "voorjaar.windicss-intellisense",
     "bungcip.better-toml",
     "davidanson.vscode-markdownlint",
     "golang.go",
