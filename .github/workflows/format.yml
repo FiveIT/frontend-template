@@ -33,6 +33,7 @@ jobs:
     name: Format
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: goimports
         uses: Jerome1337/goimports-action@v1.0.2
       - name: prettier
@@ -43,6 +44,7 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v2
       - name: eslint
@@ -53,6 +55,7 @@ jobs:
     name: test
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: go test
         run: docker-compose exec dev go test ./...
       - name: jest
