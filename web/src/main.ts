@@ -1,4 +1,4 @@
-import 'windi.css'
+import 'virtual:windi.css'
 
 import App from './App.svelte'
 import './style.css'

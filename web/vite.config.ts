@@ -3,7 +3,7 @@ import { defineConfig } from 'vite'
 import { minify } from 'html-minifier'
 import path from 'path'
 import preprocess from 'svelte-preprocess'
-import svelte from '@svitejs/vite-plugin-svelte'
+import svelte from '@sveltejs/vite-plugin-svelte'
 import windiCSS from 'vite-plugin-windicss'
 
 const indexReplace = () => {
@@ -36,19 +36,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     plugins: [
-      windiCSS.default({
-        //@ts-ignore
-        verbose: true,
-        silent: false,
-        debug: true,
-        config: 'tailwind.config.cjs', // tailwind config file path (optional)
-        compile: false, // false: interpretation mode; true: compilation mode
-        prefix: 'css-', // set compilation mode style prefix
-        globalPreflight: true, // set preflight style is global or scoped
-        globalUtility: true, // set utility style is global or scoped
-      }),
       svelte({
-        //@ts-ignore
         hot: !isProduction,
         compilerOptions: {
           dev: !isProduction,
@@ -56,6 +44,7 @@ export default defineConfig(({ mode }) => {
         emitCss: true,
         preprocess: preprocess(),
       }),
+      windiCSS.default(),
       indexReplace(),
     ],
     build: {
