@@ -3,7 +3,7 @@ FROM ubuntu
 SHELL ["/bin/bash", "-c"]
 
 # To be able to use apt-add-repository
-RUN apt-get install software-properties-common -y
+RUN apt-get update -y && apt-get install software-properties-common curl wget make -y
 
 RUN \
   # Add Google Cloud SDK apt repository
@@ -19,7 +19,7 @@ RUN \
 RUN \
   apt-get update -y \
   && apt-get upgrade -y \
-  && apt-get install make unzip wget curl google-cloud-sdk gh -y
+  && apt-get install google-cloud-sdk gh -y
 
 # Download all packages here
 WORKDIR /deps
