@@ -4,14 +4,17 @@ services:
     image: tmaxmax/fiveit-template
     command: sleep infinity
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
       - ..:/workspace:cached
-      - ~/.config/gcloud:/root/.config/gcloud
+      - ${GOOGLE_APPLICATION_CREDENTIALS:-~/.config/gcloud/application_default_credentials.json}:/root/.config/gcloud/application_default_credentials.json
+      - pnpm_store:/workspace/.pnpm-store
+      - go_mod_cache:/root/go/pkg/mod
+      - go_build_cache:/root/.cache/go-build
     environment:
       - FUNCTIONS_URL=http://localhost:4000
       - TIKA_URL=http://tika:9998
       - HASURA_URL=http://hasura:8080
       - HASURA_GRAPHQL_ADMIN_SECRET=ghimbir
+      - GOOGLE_APPLICATION_CREDENTIALS=/workspace/google_credentials.json
       - CGO_ENABLED=0
     ports:
       - 3000:3000
@@ -47,3 +50,6 @@ services:
 
 volumes:
   db_data:
+  pnpm_store:
+  go_mod_cache:
+  go_build_cache:
