@@ -56,7 +56,8 @@
       "netlify.toml": true,
       ".netlify": true,
       ".devcontainer": true,
-      "./windi.config.ts": true
+      "./windi.config.ts": true,
+      "google_credentials.json": true
     }
   },
   "extensions": [
