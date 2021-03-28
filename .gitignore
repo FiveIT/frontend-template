@@ -3,3 +3,4 @@
 tmp/
 .netlify/
 google_credentials.json
+.pnpm-debug.log
