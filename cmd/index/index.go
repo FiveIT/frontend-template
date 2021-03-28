@@ -29,7 +29,7 @@ func main() {
 		})
 	} else {
 		if err := app.Listen(":4000"); err != nil {
-			log.Error().Err(err).Msg("Failed to start server")
+			log.Error().Err(err).Msg("Failed to start server!")
 		}
 	}
 }
