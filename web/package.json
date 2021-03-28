@@ -11,7 +11,7 @@
     "open": "start http://localhost:3000",
     "validate": "eslint --fix src",
     "format": "prettier --plugin-search-dir=. -w src",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest src",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests src",
     "test:watch": "npm t -- --watch"
   },
   "devDependencies": {
