@@ -24,4 +24,7 @@ jobs:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
-      - run: docker-compose run dev /bin/bash -c "cd /workspace/web && pnpm i --frozen-lockfile && pnpm format && pnpm lint && pnpm t"
+      - run: docker-compose run dev pnpm i --frozen-lockfile
+      - run: docker-compose run dev pnpm format
+      - run: docker-compose run dev pnpm lint
+      - run: docker-compose run dev pnpm t

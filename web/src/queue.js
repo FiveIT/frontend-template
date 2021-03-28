@@ -1,4 +1,3 @@
-// @ts-check
 /**
  * A fixed size queue implemented using Javascript's array type.
  *
