@@ -46,6 +46,7 @@ RUN go get github.com/cweill/gotests/...
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.37.1
 RUN go get -u github.com/cosmtrek/air
 RUN go get golang.org/x/tools/cmd/goimports
+RUN echo 'export PATH=/root/go/bin:$PATH'
 ENV PATH /root/go/bin:${PATH}
 
 # Install NVM, Node, and pnpm 
@@ -55,7 +56,8 @@ RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | 
   && . ${NVM_DIR}/nvm.sh \
   && nvm install ${NODE_VERSION} \
   && npm i -g npm \
-  && npm i -g pnpm
+  && npm i -g pnpm \
+  && echo 'export PATH=/root/.nvm/versions/node/v${NODE_VERSION}/bin:$PATH' > /root/.bashrc
 ENV PATH /root/.nvm/versions/node/v${NODE_VERSION}/bin:$PATH
 
 RUN alias npm=pnpm
