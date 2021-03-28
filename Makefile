@@ -39,12 +39,3 @@ test-server:
 	go test -v ./...
 
 test: test-client test-server
-	
-application_default_credentials=/root/.config/gcloud/application_default_credentials.json
-
-google_credentials.json:
-	if ! [ -f $(application_default_credentials) ]; then \
-		gcloud init && \
-		gcloud auth application-default login \
-	fi && \
-	ln -s $(application_default_credentials) /workspace/google_credentials.json
