@@ -49,13 +49,14 @@ RUN go get golang.org/x/tools/cmd/goimports
 ENV PATH /root/go/bin:${PATH}
 
 # Install NVM, Node, and pnpm 
-ARG NODE_VERSION=15
+ARG NODE_VERSION=15.12.0
 ENV NVM_DIR /root/.nvm
 RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash \
   && . ${NVM_DIR}/nvm.sh \
   && nvm install ${NODE_VERSION} \
   && npm i -g npm \
   && npm i -g pnpm
+ENV PATH /root/.nvim/versions/node/v${NODE_VERSION}/bin:$PATH
 
 RUN alias npm=pnpm
 RUN alias npx=pnpx
