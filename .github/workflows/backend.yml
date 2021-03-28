@@ -3,12 +3,12 @@ on:
     branches:
       - master
     paths:
-      - ./**/*.go
+      - '**/*.go'
   pull_request:
     branches:
       - master
     paths:
-      - ./**/*.go
+      - '**/*.go'
 name: Backend
 jobs:
   ci:
