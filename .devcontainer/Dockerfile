@@ -1,12 +1,25 @@
-FROM ubuntu:20.04
+FROM ubuntu
 
 SHELL ["/bin/bash", "-c"]
 
-# Update packages
-RUN apt-get update -y && apt-get upgrade -y
+# To be able to use apt-add-repository
+RUN apt-get install software-properties-common -y
 
-# Install required binaries, such as apt-add-repository
-RUN apt-get install software-properties-common unzip wget curl -y
+RUN \
+  # Add Google Cloud SDK apt repository
+  echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" \
+  | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list \
+  && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg \
+  | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add - \
+  # Add GH CLI apt repository
+  && apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0 \
+  && apt-add-repository https://cli.github.com/packages -y
+
+# Install packages
+RUN \
+  apt-get update -y \
+  && apt-get upgrade -y \
+  && apt-get install make unzip wget curl google-cloud-sdk gh -y
 
 # Download all packages here
 WORKDIR /deps
@@ -17,16 +30,9 @@ RUN touch /root/.bashrc
 # RUN wget https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip \
   # && unzip awscli-exe-linux-x86_64.zip \
   # && ./aws/install
-# 
-# Install the Google Cloud SDK
-# RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" \
-  # | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list \
-  # && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg \
-  # | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add - \
-  # && apt-get update -y && apt-get install google-cloud-sdk -y
 
-# Install Go
-ARG GO_VERSION=1.16
+# Install Go and required tooling
+ARG GO_VERSION=1.16.2
 ENV PATH /usr/local/go/bin:$PATH
 RUN wget https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz \
   && tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
@@ -39,6 +45,7 @@ RUN go get github.com/josharian/impl
 RUN go get github.com/cweill/gotests/...
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.37.1
 RUN go get -u github.com/cosmtrek/air
+RUN go get golang.org/x/tools/cmd/goimports
 ENV PATH /root/go/bin:${PATH}
 
 # Install NVM, Node, and pnpm 
@@ -60,14 +67,5 @@ RUN alias npx=pnpx
   # && echo "deb [arch=amd64] https://download.docker.com/linux/$(lsb_release -is | tr '[:upper:]' '[:lower:]') $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list \
   # && apt-get update \
   # && apt-get install -y docker-ce-cli
-
-# Install Github CLI
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0 \
-  && apt-add-repository https://cli.github.com/packages -y \
-  && apt-get update -y \
-  && apt-get install gh -y
-
-# Install make
-RUN apt-get install make -y
 
 WORKDIR /workspace
