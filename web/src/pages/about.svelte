@@ -1,6 +1,8 @@
 <script>
   import { ready } from '@roxi/routify'
   import { onMount } from 'svelte'
+  import Text from '$/components/text/Inline.svelte'
+  import TextProse from '$/components/text/prose/Inline.svelte'
   import { store as window } from '$/components/Window.svelte'
   import { store as blue } from '$/components/blob/Blue.svelte'
   import { store as orange } from '$/components/blob/Orange.svelte'
@@ -64,36 +66,28 @@
 </script>
 
 <div class="flex flex-col items-center">
-  <p class="text-base">This page presents many cat facts.</p>
-  <p class="text-base">But also the Bee Movie script!</p>
+  <p><Text>This page presents many cat facts.</Text></p>
+  <p><Text>But also the Bee Movie script!</Text></p>
   {#await script then text}
     <div
-      class="script flex flex-col items-center space-y-md p-md border rounded mt-lg bg-white bg-opacity-50">
+      class="blur flex flex-col items-center space-y-md p-md border rounded mt-lg bg-white bg-opacity-50">
       <h2
-        class="font-serif text-center text-title subpixel-antialiasing text-black font-normal">
+        class="font-serif text-center text-title subpixel-antialiased text-black font-normal">
         The Bee Movie Script
       </h2>
-      <p class="font-serif text-prose subpixel-antialiasing max-w-prose">
-        {text}
+      <p class="max-w-prose">
+        <TextProse>{text}</TextProse>
       </p>
     </div>
   {:catch}
-    <p class="text-base text-red">Something terribly unholy happened!</p>
+    <p class="text-red"><Text>Something terribly unholy happened!</Text></p>
   {/await}
 </div>
 <footer class="mt-lg flex flex-col items-center">
   {#await composition then text}
-    <p class="text-base text-green">{text}</p>
+    <p class="text-green"><Text>{text}</Text></p>
   {:catch err}
-    <p class="text-base text-red">Nani the fuck?</p>
+    <p class="text-red"><Text>Nani the fuck?</Text></p>
     <pre class="text-red">{err}</pre>
   {/await}
 </footer>
-
-<style>
-  @supports (backdrop-filter: blur(100px)) {
-    .script {
-      backdrop-filter: blur(100px);
-    }
-  }
-</style>
