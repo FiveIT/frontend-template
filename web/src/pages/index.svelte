@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Carousel } from 'renderless-svelte'
-  import type { CarouselControls } from 'renderless-svelte'
+  import Carousel from '@tmaxmax/renderless-svelte/src/Carousel.svelte'
+  import type { CarouselControls } from '@tmaxmax/renderless-svelte/src/Carousel.svelte'
   import Queue from '$/queue'
   import NewFactButton from './_components/NewFactButton.svelte'
   import FactNavButton from './_components/FactNavButton.svelte'

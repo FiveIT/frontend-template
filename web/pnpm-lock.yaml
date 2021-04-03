@@ -1,5 +1,5 @@
 dependencies:
-  renderless-svelte: 1.5.0
+  '@tmaxmax/renderless-svelte': 1.5.0
 devDependencies:
   '@babel/core': 7.13.10
   '@babel/preset-env': 7.13.12_@babel+core@7.13.10
@@ -1504,6 +1504,12 @@ packages:
       svelte: 3.x
     resolution:
       integrity: sha512-GxafAllShGM2nkntFGURZ7fYVlUYwv7K62lqv1aFqtTYzzeZ2Cu8zTVhtE/Qt3bk2zMl6+FPKP03wjLip/G8mA==
+  /@tmaxmax/renderless-svelte/1.5.0:
+    dependencies:
+      lodash-es: 4.17.21
+    dev: false
+    resolution:
+      integrity: sha512-PV0ETgOKYYH9BGGY/YU9aQ13MJCVlDmCAF1o2KsqptXJpeyN7D//By7RbmtQBdL+bVXSuU0cqb+mmzlkwS82/Q==
   /@tsconfig/svelte/1.0.10:
     dev: true
     resolution:
@@ -4791,6 +4797,10 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==
+  /lodash-es/4.17.21:
+    dev: false
+    resolution:
+      integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
   /lodash.debounce/4.0.8:
     dev: true
     resolution:
@@ -5603,10 +5613,6 @@ packages:
     dev: true
     resolution:
       integrity: sha1-wkvOKig62tW8P1jg1IJJuSN52O8=
-  /renderless-svelte/1.5.0:
-    dev: false
-    resolution:
-      integrity: sha512-hnSEmXQipcOOrd4BYJZ4xhqqex3aEVds+bG78e3tZVUDoQL3q66CP7Nsm19bYl7Ub0eWfbvCdo0l8oWIQtzwMA==
   /repeat-element/1.1.3:
     dev: true
     engines:
@@ -6858,6 +6864,7 @@ specifiers:
   '@sveltejs/vite-plugin-svelte': ^1.0.0-next.5
   '@testing-library/jest-dom': ^5.11.10
   '@testing-library/svelte': ^3.0.3
+  '@tmaxmax/renderless-svelte': ^1.5.0
   '@tsconfig/svelte': ^1.0.10
   '@types/brotli': ^1.3.0
   '@types/glob': ^7.1.3
@@ -6879,7 +6886,6 @@ specifiers:
   postcss: ^8.2.8
   prettier: ^2.2.1
   prettier-plugin-svelte: ^2.2.0
-  renderless-svelte: ^1.5.0
   svelte: ^3.35.0
   svelte-check: ^1.3.0
   svelte-jester: ^1.3.2
