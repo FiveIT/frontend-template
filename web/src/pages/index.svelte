@@ -46,6 +46,8 @@
     return fact
   }
 
+  pushHistory().then($ready)
+
   type Handler = () => void
 
   let controls: CarouselControls
@@ -98,7 +100,6 @@
         y: 1,
       },
     }
-    pushHistory().then($ready)
     mounted = true
   })
 
@@ -111,7 +112,6 @@
   }
 </script>
 
-<!-- TODO: Fix unable to init component -->
 <Carousel {items} let:payload bind:controls let:currentIndex let:setIndex>
   <div class="flex flex-col items-center space-y-sm w-full min-h-full">
     {#await payload}
