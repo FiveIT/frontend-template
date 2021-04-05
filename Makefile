@@ -39,3 +39,8 @@ test-server:
 	go test -v ./...
 
 test: test-client test-server
+
+cypress:
+	cd web && pnpm e2e
+
+e2e: dev cypress

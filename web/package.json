@@ -93,6 +93,7 @@
     ]
   },
   "optionalDependencies": {
-    "cypress": "^6.8.0"
+    "cypress": "^6.8.0",
+    "eslint-plugin-cypress": "^2.11.2"
   }
 }
