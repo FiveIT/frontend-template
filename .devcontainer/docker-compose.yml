@@ -9,6 +9,7 @@ services:
       - pnpm_store:/workspace/.pnpm-store
       - go_mod_cache:/root/go/pkg/mod
       - go_build_cache:/root/.cache/go-build
+      - cypress_cache:/root/.cache/Cypress
     environment:
       - FUNCTIONS_URL=http://localhost:4000
       - TIKA_URL=http://tika:9998
@@ -53,3 +54,4 @@ volumes:
   pnpm_store:
   go_mod_cache:
   go_build_cache:
+  cypress_cache:
