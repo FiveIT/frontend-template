@@ -17,7 +17,7 @@ build-server:
 	-o .$(functions_base_path) ./cmd/index
 
 build-client:
-	cd web && npm i && npm run build
+	cd web && npm i --no-optional && npm run build
 
 build: build-server build-client
 
