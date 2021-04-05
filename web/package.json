@@ -12,7 +12,8 @@
     "validate": "eslint --fix src && svelte-check src",
     "format": "prettier --plugin-search-dir=. -w src",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests src",
-    "test:watch": "npm t -- --watch"
+    "test:watch": "npm t -- --watch",
+    "e2e": "cypress open"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
@@ -90,5 +91,8 @@
     "setupFilesAfterEnv": [
       "@testing-library/jest-dom/extend-expect"
     ]
+  },
+  "optionalDependencies": {
+    "cypress": "^6.8.0"
   }
 }
