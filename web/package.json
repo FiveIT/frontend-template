@@ -9,7 +9,7 @@
     "serve-vite": "vite preview",
     "brotli:dist": "node br.cjs",
     "open": "start http://localhost:3000",
-    "validate": "eslint --fix src && svelte-check src",
+    "validate": "eslint --fix src && routify -b && svelte-check src",
     "format": "prettier --plugin-search-dir=. -w src",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests src",
     "test:watch": "npm t -- --watch",
