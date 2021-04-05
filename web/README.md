@@ -11,25 +11,25 @@ pnpm i
 Rulează serverul de development:
 
 ```sh
-pnpm run dev
+pnpm dev
 ```
 
 Compilează fișierele pentru producție:
 
 ```sh
-pnpm run build
+pnpm build
 ```
 
 Servește fișierele de producție:
 
 ```sh
-pnpm run serve-vite
+pnpm serve-vite
 ```
 
 Formatează codul:
 
 ```sh
-pnpm run format
+pnpm format
 ```
 
 Testează codul:
@@ -37,6 +37,20 @@ Testează codul:
 ```sh
 pnpm t
 ```
+
+Deschide dashboard-ul Cypress:
+
+```sh
+pnpm e2e
+```
+
+NOTĂ: Pentru a putea rula Cypress, mai trebuie făcuți următorii pași (înainte de a deschide container-ul):
+
+- Instalează [VcXsrv](https://sourceforge.net/projects/vcxsrv/)
+- Rulează programul XLaunch cu următoarele setări:
+  1. Multiple windows
+  1. Start no client
+  1. `Native opengl` debifat, `Disable access control` bifat
 
 ## Probleme
 
@@ -56,23 +70,13 @@ fi compilat cu succes:
 }
 ```
 
-Pentru a obține același efect, folosiți pseudo-selectorii clasici CSS:
-
-```css
-.elem {
-  @apply bg-white border rounded;
-}
-
-.elem:hover {
-  @apply bg-red;
-}
-```
-
-sau direct în markup:
+Pentru a obține același efect, fie scrieți stilurile în markup:
 
 ```html
 <div class="elem bg-white border rounded hover:bg-red" />
 ```
+
+fie regândiți codul: extrageți clasele duplicate într-un component separat, de exemplu.
 
 ### Testare cod
 
