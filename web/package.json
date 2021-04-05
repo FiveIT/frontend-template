@@ -3,16 +3,17 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "routify -c dev-vite",
-    "dev:windows": "npm run open & routify -c dev-vite ",
+    "dev:windows": "run-p open dev",
     "build": "routify -b && vite build && npm run brotli:dist",
     "dev-vite": "vite",
     "serve-vite": "vite preview",
     "brotli:dist": "node br.cjs",
     "open": "start http://localhost:3000",
-    "validate": "eslint --fix src",
+    "validate": "eslint --fix src && routify -b && svelte-check src",
     "format": "prettier --plugin-search-dir=. -w src",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests src",
-    "test:watch": "npm t -- --watch"
+    "test:watch": "npm t -- --watch",
+    "e2e": "cypress open"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
@@ -40,6 +41,7 @@
     "glob": "^7.1.6",
     "html-minifier": "^4.0.0",
     "jest": "^27.0.0-next.6",
+    "npm-run-all": "^4.1.5",
     "open": "^8.0.4",
     "postcss": "^8.2.8",
     "prettier": "^2.2.1",
@@ -57,7 +59,7 @@
     "windicss": "^2.5.5"
   },
   "dependencies": {
-    "renderless-svelte": "^1.5.0"
+    "@tmaxmax/renderless-svelte": "^1.5.0"
   },
   "type": "module",
   "babel": {
@@ -90,5 +92,9 @@
     "setupFilesAfterEnv": [
       "@testing-library/jest-dom/extend-expect"
     ]
+  },
+  "optionalDependencies": {
+    "cypress": "^6.8.0",
+    "eslint-plugin-cypress": "^2.11.2"
   }
 }

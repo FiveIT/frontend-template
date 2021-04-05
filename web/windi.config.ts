@@ -31,7 +31,7 @@ export default defineConfig({
       serif: ['Cardo', ...defaults.fontFamily.serif],
     },
     fontSize: {
-      base: ['1rem', { letterSpacing: '-0.055rem' }],
+      sm: ['1rem', { letterSpacing: '-0.055rem' }],
       md: ['1.75rem', { letterSpacing: '-0.125rem' }],
       lg: ['2.5rem', { letterSpacing: '-0.1rem' }],
       xl: ['6rem', { letterSpacing: '-0.2rem' }],

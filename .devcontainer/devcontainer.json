@@ -57,7 +57,9 @@
       ".netlify": true,
       ".devcontainer": true,
       "./windi.config.ts": true,
-      "config_credentials": true
+      "config_credentials": true,
+      ".github": true,
+      ".pnpm-debug.log": true
     }
   },
   "extensions": [

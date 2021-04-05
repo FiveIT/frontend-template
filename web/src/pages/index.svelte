@@ -1,7 +1,11 @@
 <script lang="ts">
-  import { Carousel } from 'renderless-svelte'
-  import type { CarouselControls } from 'renderless-svelte'
+  import Carousel from '@tmaxmax/renderless-svelte/src/Carousel.svelte'
+  import type { CarouselControls } from '@tmaxmax/renderless-svelte/src/Carousel.svelte'
   import Queue from '$/queue'
+  import NewFactButton from './_components/NewFactButton.svelte'
+  import FactNavButton from './_components/FactNavButton.svelte'
+  import Text from '$/components/text/Inline.svelte'
+  import TextProse from '$/components/text/prose/Inline.svelte'
   import { metatags, ready } from '@roxi/routify'
   import { store as orange } from '$/components/blob/Orange.svelte'
   import { store as red } from '$/components/blob/Red.svelte'
@@ -41,6 +45,8 @@
     items = history.array() as any[]
     return fact
   }
+
+  pushHistory().then($ready)
 
   type Handler = () => void
 
@@ -94,7 +100,6 @@
         y: 1,
       },
     }
-    pushHistory().then($ready)
     mounted = true
   })
 
@@ -110,58 +115,32 @@
 <Carousel {items} let:payload bind:controls let:currentIndex let:setIndex>
   <div class="flex flex-col items-center space-y-sm w-full min-h-full">
     {#await payload}
-      <p class="text text-blue">Retrieving a cat fact...</p>
+      <p class="text-center max-w-prose text-blue">
+        <Text>Retrieving a cat fact...</Text>
+      </p>
     {:then text}
-      <p class="font-serif text-prose text-center max-w-prose">
-        {text}
+      <p class="text-center max-w-prose">
+        <TextProse>{text}</TextProse>
       </p>
     {:catch}
-      <p class="text text-red">Something terribly bad happened!</p>
+      <p class="text-center max-w-prose text-red">
+        <Text>Something terribly bad happened!</Text>
+      </p>
     {/await}
   </div>
-  <div class="flex space-x-sm items-center mt-auto">
-    <button
-      class="control text"
-      on:click={controls.previous}
-      disabled={currentIndex === 0}>Previous</button>
-    <button
-      class="control text"
+  <div class="flex space-x-sm items-center mt-auto mb-sm">
+    <FactNavButton on:click={controls.previous} disabled={currentIndex === 0}>
+      Previous
+    </FactNavButton>
+    <FactNavButton
       on:click={controls.next}
-      disabled={!items || currentIndex === items.length - 1}>Next</button>
+      disabled={!items || currentIndex === items.length - 1}>
+      Next
+    </FactNavButton>
   </div>
-  <button
-    class="mt-sm text"
-    on:click={() => (pushHistory(), setIndex(history.length - 1))}
-    >New fact</button>
+  <NewFactButton on:click={() => (pushHistory(), setIndex(history.length - 1))}>
+    New fact
+  </NewFactButton>
 </Carousel>
 
 <svelte:window on:keydown={keydownHandler(controls.previous, controls.next)} />
-
-<style>
-  .text {
-    @apply font-sans text-base subpixel-antialiasing text-center max-w-prose;
-  }
-
-  button {
-    backdrop-filter: blur(100px);
-    @apply p-lg border rounded transition bg-white cursor-pointer select-none outline-none bg-opacity-50;
-  }
-
-  button:hover,
-  button:focus-visible {
-    @apply border-orange bg-orange text-white;
-  }
-
-  .control {
-    @apply p-sm;
-  }
-
-  .control:hover,
-  .control:focus-visible {
-    @apply border-blue bg-blue;
-  }
-
-  .control:disabled {
-    @apply pointer-events-none opacity-50;
-  }
-</style>
