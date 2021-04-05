@@ -27,7 +27,7 @@ RUN echo 'export PATH=/root/go/bin:$PATH'
 ENV PATH /root/go/bin:${PATH}
 
 # Install NVM, Node, and pnpm 
-ARG NODE_VERSION=node
+ARG NODE_VERSION=15.13.0
 ENV NVM_DIR /root/.nvm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash \
   && . ${NVM_DIR}/nvm.sh \
