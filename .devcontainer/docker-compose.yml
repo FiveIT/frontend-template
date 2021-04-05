@@ -5,7 +5,7 @@ services:
     command: sleep infinity
     volumes:
       - ..:/workspace:cached
-      - ${GOOGLE_APPLICATION_CREDENTIALS}:/root/.config/gcloud/application_default_credentials.json
+      - ${GOOGLE_APPLICATION_CREDENTIALS:-~/.config/gcloud/application_default_credentials.json}:/root/.config/gcloud/application_default_credentials.json
       - pnpm_store:/workspace/.pnpm-store
       - go_mod_cache:/root/go/pkg/mod
       - go_build_cache:/root/.cache/go-build
